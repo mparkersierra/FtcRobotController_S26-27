@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.software;
 
+import com.bylazar.configurables.annotations.Configurable;
 import com.qualcomm.hardware.dfrobot.HuskyLens;
 import com.qualcomm.robotcore.util.Range;
 
@@ -29,6 +30,7 @@ import org.firstinspires.ftc.teamcode.hardware.RobotHardware;
  * beneath the camera. The OpMode decides when collection is complete using
  * hasBall() or the returned state, and calls stop() when finished.
  */
+@Configurable 
 public class HuskyLensBallFollow {
     // Learned color IDs must match the IDs shown on the HuskyLens screen.
     public static final int YELLOW_BALL_ID = 1;

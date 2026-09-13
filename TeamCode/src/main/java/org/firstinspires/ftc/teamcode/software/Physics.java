@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.software;
 
+import com.bylazar.configurables.annotations.Configurable;
+
+@Configurable 
 public class Physics {
 
     // Fixed launcher geometry. Set these to the robot's measured values.
