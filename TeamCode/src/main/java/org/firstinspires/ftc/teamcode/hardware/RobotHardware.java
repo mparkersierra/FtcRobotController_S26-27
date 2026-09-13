@@ -56,7 +56,7 @@ public class RobotHardware {
     private void initSensors() {
         odo = hw.get(GoBildaPinpointDriver.class, "odo");
         huskyLensTracker = hw.get(HuskyLens.class, "huskylensTracker");
-        huskyLensTracker.selectAlgorithm(HuskyLens.Algorithm.OBJECT_TRACKING);
+        huskyLensTracker.selectAlgorithm(HuskyLens.Algorithm.COLOR_RECOGNITION);
     }
 
 
