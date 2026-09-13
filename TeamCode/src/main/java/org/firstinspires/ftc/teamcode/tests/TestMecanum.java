@@ -1,0 +1,38 @@
+package org.firstinspires.ftc.teamcode.tests;
+
+import org.firstinspires.ftc.teamcode.hardware.RobotHardware;
+import org.firstinspires.ftc.teamcode.software.MecanumDrive;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+@TeleOp(name = "Test Mecanum", group = "Examples")
+public class TestMecanum extends LinearOpMode {
+
+    @Override
+    public void runOpMode() {
+        // Initialize hardware and mecanum drive
+        RobotHardware robot = new RobotHardware(hardwareMap);
+        MecanumDrive drive = new MecanumDrive(robot);
+
+        waitForStart();
+
+        while (opModeIsActive()) {
+            // Read gamepad inputs
+            double leftStickX = gamepad1.left_stick_x;
+            double leftStickY = gamepad1.left_stick_y;
+            double rightStickX = gamepad1.right_stick_x;
+            double rightStickY = gamepad1.right_stick_y;
+
+            telemetry.addData("leftx", leftStickX);
+            telemetry.addData("lefty", leftStickY);
+            telemetry.addData("rightx", rightStickX);
+            telemetry.addData("righty", rightStickY);
+            telemetry.update();
+
+            // Update mecanum drive with joystick inputs
+            drive.update(leftStickX, leftStickY, rightStickX, rightStickY);
+        }
+    }
+    
+}
