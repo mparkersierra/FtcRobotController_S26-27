@@ -2,10 +2,13 @@ package org.firstinspires.ftc.teamcode.hardware;
 
 import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.hardware.dfrobot.HuskyLens;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.software.TransferData;
 
 public class RobotHardware {
@@ -23,6 +26,9 @@ public class RobotHardware {
 
     // Motors
     public DcMotor lf, rf, lb, rb, intake;
+    public DcMotorEx launcher;
+
+    public CRServo feedI, feedL;
 
     // Sensors
     public GoBildaPinpointDriver odo;
@@ -35,6 +41,7 @@ public class RobotHardware {
 
         initMotors();
         initSensors();
+        initServos();
     }
 
     private void initMotors() {
@@ -55,10 +62,21 @@ public class RobotHardware {
 
         intake = hw.get(DcMotor.class, "intake");
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        launcher = hw.get(DcMotorEx.class, "launcher");
+    }
+
+    private void initServos() {
+        feedI = hw.get(CRServo.class, "feedI");
+        feedI.setDirection(CRServo.Direction.REVERSE);
+        feedL = hw.get(CRServo.class, "feedL");
     }
 
     private void initSensors() {
         odo = hw.get(GoBildaPinpointDriver.class, "odo");
+        odo.setOffsets(-1.05680886216051,-2.6479120329609067, DistanceUnit.INCH);
+        odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.REVERSED, GoBildaPinpointDriver.EncoderDirection.FORWARD);
+
         huskyLensTracker = hw.get(HuskyLens.class, "huskylensTracker");
         huskyLensTracker.selectAlgorithm(HuskyLens.Algorithm.COLOR_RECOGNITION);
     }
